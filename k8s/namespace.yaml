@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-website-builder
+  labels:
+    project: ai-website-builder
+    environment: production

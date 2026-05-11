@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-wb-config
+  namespace: ai-website-builder
+data:
+  # AWS Configuration
+  AWS_REGION: "us-east-1"
+  AWS_ACCOUNT_ID: "959545103699"
+
+  # S3 Buckets
+  S3_SITES_BUCKET: "ai-wb-sites-959545103699"
+  S3_ASSETS_BUCKET: "ai-wb-assets-959545103699"
+  S3_TEMPLATES_BUCKET: "ai-wb-templates-959545103699"
+
+  # DynamoDB Tables
+  DYNAMODB_PAGE_VIEWS_TABLE: "ai-wb-page-views"
+  DYNAMODB_PAGE_VIEW_DAILY_TABLE: "ai-wb-page-view-daily"
+
+  # Cognito Configuration
+  COGNITO_USER_POOL_ID: "us-east-1_UkKMQIN1R"
+  COGNITO_CLIENT_ID: "7kji0ar3m8g81pjr0fnkrpsirb"
+  COGNITO_REGION: "us-east-1"
+
+  # Application Configuration
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  DEBUG: "false"
+
+  # CloudFront Configuration
+  CLOUDFRONT_DISTRIBUTION_ID: "E23RQWEJSVII7S"
+  CLOUDFRONT_DOMAIN: "d2raj73d783uqn.cloudfront.net"
+
+  # Bedrock AI
+  BEDROCK_REGION: "us-east-1"
+  BEDROCK_MODEL_ID: "us.anthropic.claude-sonnet-4-6"
+
+  # Email (SES)
+  SES_SENDER_EMAIL: "noreply@chinabjalex.com"
+  SES_REGION: "us-east-1"
