@@ -2,20 +2,33 @@
 Database connection and session management
 """
 
+import ssl
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.pool import NullPool
 from app.config import settings
 
+# Parse DATABASE_URL to remove sslmode query parameter if present
+# asyncpg doesn't accept sslmode as a URL parameter - it needs SSL via connect_args
+db_url = settings.DATABASE_URL.split('?')[0]  # Remove query params
+
+# Create SSL context for RDS connection
+# RDS requires SSL but we'll disable hostname verification for internal endpoints
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+
 # Create async engine
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     echo=settings.DB_ECHO,
     pool_size=settings.DB_POOL_SIZE,
     max_overflow=settings.DB_MAX_OVERFLOW,
     pool_pre_ping=True,
     # Use NullPool for local development if needed
     poolclass=NullPool if settings.ENVIRONMENT == "test" else None,
+    # For asyncpg, pass SSL context via connect_args
+    connect_args={"ssl": ssl_context} if "rds.amazonaws.com" in settings.DATABASE_URL else {},
 )
 
 # Create async session factory
