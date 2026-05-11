@@ -1,0 +1,43 @@
+# AWS Configuration
+aws_region     = "us-east-1"
+aws_account_id = "959545103699"
+environment    = "prod"
+project_name   = "ai-website-builder"
+
+# VPC Configuration
+vpc_id = "vpc-0ff408f14aecb4363"
+private_subnet_ids = [
+  "subnet-06a7755a28d242d10", # us-east-1a
+  "subnet-0ec08327d53513ce6", # us-east-1b
+  "subnet-04c4b09df3b467415"  # us-east-1c
+]
+public_subnet_ids = [
+  "subnet-097171e1328af8777", # us-east-1a
+  "subnet-0e9822121d53f1f9d", # us-east-1b
+  "subnet-01b43b037b4ba70f5"  # us-east-1c
+]
+
+# EKS Configuration
+eks_cluster_name = "ai-site-builder"
+eks_namespace    = "ai-website-builder"
+
+# RDS Configuration
+db_instance_class    = "db.t4g.medium"
+db_name              = "ai_website_builder"
+db_username          = "admin"
+db_allocated_storage = 20
+
+# Redis Configuration
+redis_node_type = "cache.t4g.micro"
+
+# Domain Configuration
+domain_name = "chinabjalex.com"
+
+# S3 Bucket Names
+sites_bucket_name     = "ai-wb-sites-959545103699"
+assets_bucket_name    = "ai-wb-assets-959545103699"
+templates_bucket_name = "ai-wb-templates-959545103699"
+
+# DynamoDB Configuration
+page_views_table_name      = "ai-wb-page-views"
+page_view_daily_table_name = "ai-wb-page-view-daily"
