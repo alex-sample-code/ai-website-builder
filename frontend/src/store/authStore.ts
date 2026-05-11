@@ -37,13 +37,15 @@ export const useAuthStore = create<AuthState>()(
 
           // Store tokens
           localStorage.setItem('access_token', response.access_token);
-          localStorage.setItem('refresh_token', response.refresh_token);
+          if (response.refresh_token) {
+            localStorage.setItem('refresh_token', response.refresh_token);
+          }
 
           set({
-            user: response.user,
-            tenant: response.tenant,
+            user: response.user || null,
+            tenant: response.tenant || null,
             accessToken: response.access_token,
-            refreshToken: response.refresh_token,
+            refreshToken: response.refresh_token || null,
             isAuthenticated: true,
             isLoading: false,
             error: null,

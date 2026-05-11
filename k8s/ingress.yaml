@@ -8,7 +8,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    # CloudFront connects via HTTP:80, no SSL redirect needed
 
     # Certificate Configuration
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:959545103699:certificate/a511b177-c1c2-4c71-85f3-b148f6b6586e
