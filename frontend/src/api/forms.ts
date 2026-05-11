@@ -1,19 +1,19 @@
-import apiClient, { axiosInstance } from './client';
+import { axiosInstance } from './client';
 import type { FormDefinition, FormSubmission, FormSubmissionUpdateRequest, PaginatedResponse } from '@/types';
 
 export const formsAPI = {
   async listDefinitions(siteId: string): Promise<FormDefinition[]> {
-    const response = await apiClient.get<FormDefinition[]>(`/sites/${siteId}/forms`);
+    const response = await axiosInstance.get<FormDefinition[]>(`/sites/${siteId}/forms`);
     return response.data;
   },
 
   async createDefinition(siteId: string, data: Partial<FormDefinition>): Promise<FormDefinition> {
-    const response = await apiClient.post<FormDefinition>(`/sites/${siteId}/forms`, data);
+    const response = await axiosInstance.post<FormDefinition>(`/sites/${siteId}/forms`, data);
     return response.data;
   },
 
   async updateDefinition(siteId: string, formId: string, data: Partial<FormDefinition>): Promise<FormDefinition> {
-    const response = await apiClient.put<FormDefinition>(`/sites/${siteId}/forms/${formId}`, data);
+    const response = await axiosInstance.put<FormDefinition>(`/sites/${siteId}/forms/${formId}`, data);
     return response.data;
   },
 
@@ -22,7 +22,7 @@ export const formsAPI = {
     formId: string,
     params?: { page?: number; per_page?: number; status?: string }
   ): Promise<PaginatedResponse<FormSubmission>> {
-    const response = await apiClient.get<PaginatedResponse<FormSubmission>>(
+    const response = await axiosInstance.get<PaginatedResponse<FormSubmission>>(
       `/sites/${siteId}/forms/${formId}/submissions`,
       { params }
     );
@@ -34,7 +34,7 @@ export const formsAPI = {
     submissionId: string,
     data: FormSubmissionUpdateRequest
   ): Promise<FormSubmission> {
-    const response = await apiClient.put<FormSubmission>(
+    const response = await axiosInstance.put<FormSubmission>(
       `/sites/${siteId}/forms/submissions/${submissionId}/status`,
       data
     );

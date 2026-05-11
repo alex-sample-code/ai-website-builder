@@ -1,9 +1,9 @@
-import apiClient, { axiosInstance } from './client';
+import { axiosInstance } from './client';
 import type { Asset, AssetUploadResponse } from '@/types';
 
 export const assetsAPI = {
   async list(siteId: string, params?: { folder?: string }): Promise<Asset[]> {
-    const response = await apiClient.get<Asset[]>(`/sites/${siteId}/assets`, { params });
+    const response = await axiosInstance.get<Asset[]>(`/sites/${siteId}/assets`, { params });
     return response.data;
   },
 
@@ -28,6 +28,6 @@ export const assetsAPI = {
   },
 
   async delete(siteId: string, assetId: string): Promise<void> {
-    await apiClient.delete(`/sites/${siteId}/assets/${assetId}`);
+    await axiosInstance.delete(`/sites/${siteId}/assets/${assetId}`);
   },
 };

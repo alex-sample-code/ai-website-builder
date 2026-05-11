@@ -1,14 +1,14 @@
-import apiClient, { axiosInstance } from './client';
+import { axiosInstance } from './client';
 import type { AISession, AISessionCreateRequest, AIMessageRequest, AIGenerateRequest } from '@/types';
 
 export const aiAPI = {
   async createSession(data: AISessionCreateRequest): Promise<AISession> {
-    const response = await apiClient.post<AISession>('/ai/sessions', data);
+    const response = await axiosInstance.post<AISession>('/ai/sessions', data);
     return response.data;
   },
 
   async sendMessage(sessionId: string, data: AIMessageRequest): Promise<AISession> {
-    const response = await apiClient.post<AISession>(`/ai/sessions/${sessionId}/message`, data);
+    const response = await axiosInstance.post<AISession>(`/ai/sessions/${sessionId}/message`, data);
     return response.data;
   },
 
@@ -30,17 +30,17 @@ export const aiAPI = {
   },
 
   async generate(sessionId: string, data?: AIGenerateRequest): Promise<AISession> {
-    const response = await apiClient.post<AISession>(`/ai/sessions/${sessionId}/generate`, data || {});
+    const response = await axiosInstance.post<AISession>(`/ai/sessions/${sessionId}/generate`, data || {});
     return response.data;
   },
 
   async getStatus(sessionId: string): Promise<AISession> {
-    const response = await apiClient.get<AISession>(`/ai/sessions/${sessionId}/status`);
+    const response = await axiosInstance.get<AISession>(`/ai/sessions/${sessionId}/status`);
     return response.data;
   },
 
   async regenerate(sessionId: string): Promise<AISession> {
-    const response = await apiClient.post<AISession>(`/ai/sessions/${sessionId}/regenerate`, {});
+    const response = await axiosInstance.post<AISession>(`/ai/sessions/${sessionId}/regenerate`, {});
     return response.data;
   },
 
