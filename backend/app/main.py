@@ -76,11 +76,12 @@ app.add_middleware(
 )
 
 # Trusted host middleware (for production)
-if settings.ENVIRONMENT == "production":
-    app.add_middleware(
-        TrustedHostMiddleware,
-        allowed_hosts=["api.chinabjalex.com", "*.chinabjalex.com"]
-    )
+# Note: disabled to allow ALB health checks which use IP as Host header
+# if settings.ENVIRONMENT == "production":
+#     app.add_middleware(
+#         TrustedHostMiddleware,
+#         allowed_hosts=["api.chinabjalex.com", "*.chinabjalex.com", "localhost"]
+#     )
 
 
 @app.get("/")
