@@ -11,16 +11,24 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.2.2",
+    "@aws-amplify/ui-react": "^6.5.0",
+    "@tanstack/react-query": "^5.100.9",
+    "@types/lodash": "^4.17.24",
+    "antd": "^5.21.0",
+    "aws-amplify": "^6.6.0",
+    "axios": "^1.7.7",
+    "grapesjs": "^0.21.13",
+    "grapesjs-blocks-basic": "^1.0.2",
+    "grapesjs-plugin-forms": "^2.0.6",
+    "grapesjs-preset-webpage": "^1.0.3",
+    "lodash": "^4.18.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^6.26.0",
-    "grapesjs": "^0.21.13",
-    "grapesjs-preset-webpage": "^1.0.3",
-    "axios": "^1.7.7",
-    "@aws-amplify/ui-react": "^6.5.0",
-    "aws-amplify": "^6.6.0",
-    "antd": "^5.21.0",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.13",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
@@ -28,9 +36,11 @@
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
     "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.5.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
+    "postcss": "^8.5.14",
     "typescript": "^5.6.2",
     "vite": "^5.4.8"
   }
