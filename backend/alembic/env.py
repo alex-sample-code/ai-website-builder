@@ -9,12 +9,35 @@ from alembic import context
 from app.models.base import Base
 from app.config import settings
 
+# Import all models to ensure they're registered with Base.metadata
+from app.models import (  # noqa: F401
+    tenant,
+    user,
+    site,
+    page,
+    site_version,
+    site_settings,
+    nav_menu,
+    asset,
+    ai_session,
+    blog,
+    form,
+    integration,
+    audit_log,
+    team_invitation,
+)
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
+# Convert async database URL to sync for Alembic
+database_url = settings.DATABASE_URL
+if database_url.startswith("postgresql+asyncpg://"):
+    database_url = database_url.replace("postgresql+asyncpg://", "postgresql://")
+
 # Override sqlalchemy.url with the one from settings
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+config.set_main_option("sqlalchemy.url", database_url)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
